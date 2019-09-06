@@ -19,7 +19,12 @@ public class WrapperApp {
 		char ch = 'A';
 		Character cRef = ch;	// AUTO-BOXING   | Character cRef = new Character(ch);
 		
-		char dh = cRef; 		// AUTO-UNBOXING | char dh = cRef.charValue(); 		
+		char dh = cRef; 		// AUTO-UNBOXING | char dh = cRef.charValue(); 	
+		
+		// int -> Integer
+		// char-> Character
+		// float-> Float
+		// ....
 		
 	}
 
