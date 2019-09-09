@@ -69,7 +69,6 @@ public class LoginApp {
 		}
 		
 		lRef.loginUser();
-
 	}
 
 }
