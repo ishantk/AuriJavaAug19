@@ -9,6 +9,7 @@ public class App {
 
 	public static void main(String[] args) {
 		
+		/*
 		Scanner scanner = new Scanner(System.in);
 		Customer customer = new Customer();
 		
@@ -40,7 +41,21 @@ public class App {
 		}
 		
 		// PS: Data Must be Saved in DataBase
-			
+		*/
+		
+		//Customer customer = new Customer(1, "John Watson", "+91 98765 00000", "john.watson@example.com");
+		
+		DBHelper db = new DBHelper();
+		db.createConnection();
+		//db.updateCustomerInDB(customer);
+		
+		//db.deleteCustomerInDB(1);
+		
+		db.fetchCustomers();
+		
+		db.closeConnection();
+		
+		
 		
 
 	}

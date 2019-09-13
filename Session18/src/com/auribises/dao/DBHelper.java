@@ -3,6 +3,7 @@ package com.auribises.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.auribises.model.Customer;
@@ -93,6 +94,75 @@ public class DBHelper {
 				System.out.println(">> "+customer.name+" Saved in DataBase");
 			}else{
 				System.out.println(">> "+customer.name+" Not Saved in DataBase");
+			}
+			
+		} catch (Exception e) {
+			System.out.println(">> Some Exception: "+e);
+		}
+	}
+	
+	public void updateCustomerInDB(Customer customer){
+		try {
+			
+			String sql = "update Customer set name = ?, phone = ?, email = ? where cid = ?";
+			pStmt = con.prepareStatement(sql);
+			
+			pStmt.setString(1, customer.name);
+			pStmt.setString(2, customer.phone);
+			pStmt.setString(3, customer.email);
+			pStmt.setInt(4, customer.cid);
+			
+			int i = pStmt.executeUpdate();
+			
+			if(i>0){
+				System.out.println(">> "+customer.name+" Update in DataBase");
+			}else{
+				System.out.println(">> "+customer.name+" Not Updated in DataBase");
+			}
+			
+		} catch (Exception e) {
+			System.out.println(">> Some Exception: "+e);
+		}
+	}
+	
+	public void deleteCustomerInDB(int cid){
+		try {
+			
+			String sql = "delete from Customer where cid = ?";
+			pStmt = con.prepareStatement(sql);
+			
+			pStmt.setInt(1, cid);
+			
+			int i = pStmt.executeUpdate();
+			
+			if(i>0){
+				System.out.println(">> "+cid+" Deleted in DataBase");
+			}else{
+				System.out.println(">> "+cid+" Not Deleted in DataBase");
+			}
+			
+		} catch (Exception e) {
+			System.out.println(">> Some Exception: "+e);
+		}
+	}
+	
+	public void fetchCustomers(){
+		try {
+			
+			String sql = "select * from Customer";
+			
+			pStmt = con.prepareStatement(sql);
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			while(rs.next()){
+				Customer cRef = new Customer();
+				cRef.cid = rs.getInt(1);
+				cRef.name = rs.getString(2);
+				cRef.phone = rs.getString(3);
+				cRef.email = rs.getString(4);
+				
+				cRef.showCustomer();
 			}
 			
 		} catch (Exception e) {

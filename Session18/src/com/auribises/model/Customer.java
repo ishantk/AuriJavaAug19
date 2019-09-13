@@ -27,7 +27,12 @@ package com.auribises.model;
  		  )
  		  
  		  insert into Customer values(null, 'John', '+91 99999 88888', 'john@example.com')
- 
+ 		  update Customer set name = 'John Watson', phone='+91 99999 11111', email = 'john.w@example.com' where cid = 1
+ 		  delete from Customer where cid = 1
+ 		  select * from Customer
+ 		  select * from Customer where name = 'Fionna'
+ 		  select * from Customer where email = 'fionna@example.com' and phone='+91 98888 00000'
+ 		  select * from Customer where age > 20	
  */
 
 public class Customer {
@@ -48,6 +53,16 @@ public class Customer {
 		this.email = email;
 	}
 
+	public void showCustomer(){
+		System.out.println("===="+cid+" | "+name+"====");
+		System.out.println("Phone: "+phone);
+		System.out.println("Email: "+email);
+		System.out.println("===============");
+		
+		System.out.println();
+		
+	}
+	
 	@Override
 	public String toString() {
 		return "Customer [cid=" + cid + ", name=" + name + ", phone=" + phone + ", email=" + email + "]";
